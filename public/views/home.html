@@ -1,0 +1,30 @@
+<script type="text/ng-template" id="warrantyBadgePopOver.html">
+	<div>
+		<div class="notif-detail__title">
+			<span>Notifications</span>
+			<span class="round-count">{{user.unreadMessages || 0}}</span>
+		</div>
+		<div class="notif-detail__notif row" ng-repeat="msg in user.messages | orderBy:'read'" ng-class="{'unread-notif': msg.read===false}">
+			<div class="col-md-3">
+				<img style="border-radius: 50%;" height="50px" ng-src="/images/{{msg.name.toLowerCase()}}.jpg"/>
+			</div>
+			<div class="col-md-9" style="color: #747f8b;font-size: 16px;">
+				<strong style="color: #888;">{{msg.name}}</strong> {{msg.message}}
+			</div>
+		</div>
+	</div>
+</script>
+
+<div class="notif-header">
+	<div class="notif-header__div">
+		<a popover-placement="bottom" popover-trigger="outsideClick" popover-class="notif-detail"
+		   popover-is-open="notifIsOpen" uib-popover-template="'warrantyBadgePopOver.html'" ng-click="notifIsOpen?angular.noop():markRead()">
+			<i class="fa fa-bell-o"></i>
+			<span ng-show="user.unreadMessages">{{user.unreadMessages}}</span>
+		</a>
+	</div>
+</div>
+
+<div class="jumbotron text-center">
+	<h1>Simple Push Notification system using Socket.io</h1>
+</div>
